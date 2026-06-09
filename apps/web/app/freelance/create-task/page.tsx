@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSession }           from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm }              from "react-hook-form";
@@ -24,7 +24,7 @@ type FormData = z.infer<typeof schema>;
 
 const STEPS = ["Service", "Details", "Review & Pay"];
 
-export default function CreateTaskPage() {
+function CreateTaskContent() {
   const { data: session, status } = useSession();
   const router      = useRouter();
   const params      = useSearchParams();
@@ -327,5 +327,13 @@ function Loader() {
     <main className="min-h-screen bg-void flex items-center justify-center">
       <div className="w-8 h-8 border-2 border-teal/30 border-t-teal rounded-full animate-spin" />
     </main>
+  );
+}
+
+export default function CreateTaskPage() {
+  return (
+    <Suspense fallback={<Loader />}>
+      <CreateTaskContent />
+    </Suspense>
   );
 }
