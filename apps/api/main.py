@@ -30,3 +30,4 @@ app.include_router(agents.router, prefix="/agents", tags=["agents"])
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
