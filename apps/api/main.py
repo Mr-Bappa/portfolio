@@ -16,7 +16,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "https://bappaditya.vercel.app",  # update with your Vercel URL
+        "https://bappaditya-ai-portfolio.vercel.app/home",  # update with your Vercel URL
     ],
     allow_credentials=True,
     allow_methods=["*"],
